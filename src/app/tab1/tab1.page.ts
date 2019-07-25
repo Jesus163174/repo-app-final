@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import {ReportsService} from '../services/reports/reports.service';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -7,6 +7,14 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+    private reports:any = [];
+    constructor(
+        private reportServices:ReportsService
+    ) {
+        this.getReports(0);
+    }
+    public getReports(reporter_id){
+        this.reports = this.reportServices.reportsByReporter(reporter_id);
+    }
 
 }
