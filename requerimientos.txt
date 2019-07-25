@@ -1,0 +1,31 @@
+pantallas
+    login
+        datos para logearse
+            *correo
+            *contraseña
+    registro
+        datos de registro
+            *nombre
+            *correo
+            *contraseña
+            *tipo
+    home    
+        listado de todas las noticas
+        boton de agregar nueva noticia
+    
+    agregar nueva noticia
+        datos de registro
+            *nombre
+            *descripción
+            *fecha
+            *imagen
+            *usuario
+    detalle
+        mostrar los datos de la noticia seleccionada
+        botton para editar una noticia y te abrira un openaction
+        editar todos los datos menos imagen
+        solo puede editar la publicacion el autor que subio la noticia
+    
+    splash de la aplicación
+
+    icono de la aplicación
