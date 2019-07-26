@@ -1,50 +1,13 @@
-<ion-header translucent>
-  <ion-toolbar color="primary">
-    <ion-title>Register</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="dismissModal()">Close</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Tab DSO
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
 
-<ion-content fullscreen>
-  <div *ngIf="!name; else forminfo">
-      <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
-        <div class="form-container">
-          <div class="row columns">
-            <ion-item>
-              <ion-label position="stacked">Name <ion-text color="danger">*</ion-text></ion-label>
-              <ion-input required type="text" formControlName="name"></ion-input>
-            </ion-item>
-      
-          <ion-item>
-            <ion-label position="stacked">Email <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="email" formControlName="email"></ion-input>
 
-          </ion-item>
-            
-            <ion-item>
-              <ion-label position="stacked">Age <ion-text color="danger">*</ion-text></ion-label>
-              <ion-input required type="number" formControlName="age"></ion-input>
-            </ion-item>
-            <div class="ion-padding">
-              <ion-button expand="block" type="submit" class="ion-no-margin" value="Submit Form" [disabled]="!rForm.valid">Create account</ion-button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-    
-    <ng-template #forminfo>
-      <div class="form-container">
-        <div class="row columns">
-            <h1>{{ name }}</h1>
-    
-            <h1>{{ email }}</h1>
-
-            <h1>{{ age }}</h1>
-        </div>
-      </div>
-    </ng-template>
-
-</ion-content>
+  </ion-content>
+  
