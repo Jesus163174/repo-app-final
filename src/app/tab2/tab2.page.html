@@ -1,50 +1,48 @@
-<ion-header translucent>
-  <ion-toolbar color="primary">
-    <ion-title>Register</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="dismissModal()">Close</ion-button>
-    </ion-buttons>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Tab Two
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
-  <div *ngIf="!name; else forminfo">
-      <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
-        <div class="form-container">
-          <div class="row columns">
-            <ion-item>
-              <ion-label position="stacked">Name <ion-text color="danger">*</ion-text></ion-label>
-              <ion-input required type="text" formControlName="name"></ion-input>
-            </ion-item>
-      
-          <ion-item>
-            <ion-label position="stacked">Email <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="email" formControlName="email"></ion-input>
+<ion-content>
+  <ion-app>
+    <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Crear Noticia</ion-title>
+      </ion-toolbar>
+    </ion-header>
 
+    <ion-content fullscreen>
+      <form onsubmit="processForm(event)">
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+          <ion-item>
+            <ion-label position="stacked">Nombre <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
           </ion-item>
-            
-            <ion-item>
-              <ion-label position="stacked">Age <ion-text color="danger">*</ion-text></ion-label>
-              <ion-input required type="number" formControlName="age"></ion-input>
-            </ion-item>
-            <div class="ion-padding">
-              <ion-button expand="block" type="submit" class="ion-no-margin" value="Submit Form" [disabled]="!rForm.valid">Create account</ion-button>
-            </div>
-          </div>
+
+          <ion-item>
+            <ion-label position="stacked">Descripción <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Fecha <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Imagen <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+          </ion-item>
+        </ion-list>
+
+        <div class="ion-padding">
+          <ion-button expand="block" type="submit" class="ion-no-margin">Crear Noticia</ion-button>
         </div>
       </form>
-    </div>
+    </ion-content>
     
-    <ng-template #forminfo>
-      <div class="form-container">
-        <div class="row columns">
-            <h1>{{ name }}</h1>
-    
-            <h1>{{ email }}</h1>
-
-            <h1>{{ age }}</h1>
-        </div>
-      </div>
-    </ng-template>
-
+  </ion-app>
 </ion-content>
