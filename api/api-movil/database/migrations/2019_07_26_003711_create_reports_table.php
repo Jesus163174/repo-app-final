@@ -19,7 +19,7 @@ class CreateReportsTable extends Migration
             $table->longText('descripcion');
             $table->date('fecha');
             $table->string('imagen');
-            $table->integer('usuario');
+            $table->integer('usuario')->unsigned();
             $table->foreign('usuario')->references('id')->on('users');
             $table->timestamps();
         });
