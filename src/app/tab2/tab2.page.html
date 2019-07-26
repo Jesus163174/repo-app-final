@@ -4,34 +4,26 @@
     </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-      <form onsubmit="processForm(event)">
+    <form (ngSubmit)="addReport()">
         <ion-list lines="full" class="ion-no-margin ion-no-padding">
-          <ion-item>
-            <ion-label position="stacked">Nombre <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="stacked">Descripción <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="stacked">Fecha <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="stacked">Imagen <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
-          </ion-item>
+            <ion-item>
+                <ion-label position="floating">Nombre <ion-text color="danger">*</ion-text></ion-label>
+                <ion-input required="" type="text" [(ngModel)]="reportes.nameReport" name="nameReport"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Descripción <ion-text color="danger">*</ion-text></ion-label>
+                <ion-input required="" type="text" [(ngModel)]="reportes.descripcion" name="descripcion"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Imagen <ion-text color="danger">*</ion-text></ion-label>
+                <ion-input required="" type="text" [(ngModel)]="reportes.imagen" name="imagen"></ion-input>
+            </ion-item>
         </ion-list>
-
         <div class="ion-padding">
-          <ion-button color="danger" expand="block" type="submit" class="ion-no-margin">Crear Noticia</ion-button>
+            <ion-button color="danger" expand="block" type="submit" class="ion-no-margin">Crear Noticia</ion-button>
         </div>
-      </form>
-    </ion-content>
+    </form>
+</ion-content>
     
 
 

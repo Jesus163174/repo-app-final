@@ -9,7 +9,7 @@ class ReportController extends Controller{
     public function index(){
         $data = null;
         try{    
-            $reports = Report::getReports()->user()->get();
+            $reports = Report::getReports()->get();
             
             $data = array(
                 'reports'=>$reports,
@@ -35,7 +35,6 @@ class ReportController extends Controller{
         $response = null;
         try{
             $report = new Report();
-            //return $request;
             $request['fecha'] = now()->format('Y-m-d');
             $save   = $report->store($request->all());
             $response = array(
