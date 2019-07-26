@@ -52,7 +52,7 @@ var Tab1PageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header  translucent>\r\n    <ion-toolbar color=\"danger\">\r\n        <ion-title>Noticias Tuxtla</ion-title>\r\n    </ion-toolbar>\r\n</ion-header>\r\n<ion-content fullscreen>\r\n    <ion-card *ngFor=\"let report of reports\">\r\n        <img [src]=\"report.imagen\" />\r\n        <ion-card-header>\r\n            <ion-card-subtitle>{{report.nameReport}}</ion-card-subtitle>\r\n            <ion-card-title>{{report.fecha}}</ion-card-title>\r\n        </ion-card-header>\r\n        <ion-card-content>\r\n            {{report.descripcion}}\r\n        </ion-card-content>\r\n    </ion-card>\r\n</ion-content>\r\n<ion-fab routerLink=\"/tabs/tab2\" vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\r\n    <ion-fab-button color=\"danger\" size=\"small\">\r\n        <ion-icon name=\"add\"></ion-icon>\r\n    </ion-fab-button>\r\n</ion-fab>\r\n"
+module.exports = "<ion-header  translucent>\r\n    <ion-toolbar color=\"danger\">\r\n        <ion-title>Noticias Tuxtla</ion-title>\r\n    </ion-toolbar>\r\n</ion-header>\r\n<ion-content fullscreen>\r\n    <ion-card *ngFor=\"let report of reports\" (click)=\"presentActionSheet()\">\r\n        <img [src]=\"report.imagen\" />\r\n        <ion-card-header>\r\n            <ion-card-subtitle>{{report.nameReport}}</ion-card-subtitle>\r\n            <ion-card-title>{{report.fecha}}</ion-card-title>\r\n        </ion-card-header>\r\n        <ion-card-content>\r\n            {{report.descripcion}}\r\n        </ion-card-content>\r\n    </ion-card>\r\n</ion-content>\r\n<ion-fab routerLink=\"/tabs/tab2\" vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\r\n    <ion-fab-button color=\"danger\" size=\"small\">\r\n        <ion-icon name=\"add\"></ion-icon>\r\n    </ion-fab-button>\r\n</ion-fab>\r\n"
 
 /***/ }),
 
@@ -80,29 +80,111 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_reports_reports_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/reports/reports.service */ "./src/app/services/reports/reports.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
 
 
 
 var Tab1Page = /** @class */ (function () {
-    function Tab1Page(reportServices) {
+    function Tab1Page(reportServices, actionSheetController, alertController) {
         this.reportServices = reportServices;
-        this.reports = [];
+        this.actionSheetController = actionSheetController;
+        this.alertController = alertController;
+        this.reports = null;
         this.getReports(0);
     }
+    Tab1Page.prototype.ngOnInit = function () {
+        this.getReports(0);
+    };
+    Tab1Page.prototype.ionViewWillEnter = function () {
+        this.getReports(0);
+    };
     Tab1Page.prototype.getReports = function (reporter_id) {
         var _this = this;
         //this.reports = this.reportServices.reportsByReporter(reporter_id);
         this.reportServices.reportsByReporter(reporter_id).subscribe(function (reports) {
+            console.log(reports);
             _this.reports = reports['reports'];
-            alert("cargando daots");
             console.log(_this.reports);
         }, function (error) {
             alert("error: " + error.message);
             alert("error");
         });
     };
-    Tab1Page.prototype.ionViewWillEnter = function () {
-        this.getReports(0);
+    Tab1Page.prototype.presentActionSheet = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var actionSheet;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.actionSheetController.create({
+                            header: 'Noticias',
+                            buttons: [{
+                                    text: 'Eliminar',
+                                    role: 'destructive',
+                                    icon: 'trash',
+                                    handler: function () {
+                                        console.log('Delete clicked');
+                                        _this.presentAlertConfirm();
+                                    }
+                                }, {
+                                    text: 'Editar',
+                                    icon: 'create',
+                                    handler: function () {
+                                        console.log('Favorite clicked');
+                                    }
+                                }, {
+                                    text: 'Cancelar',
+                                    icon: 'close',
+                                    role: 'cancel',
+                                    handler: function () {
+                                        console.log('Cancel clicked');
+                                    }
+                                }]
+                        })];
+                    case 1:
+                        actionSheet = _a.sent();
+                        return [4 /*yield*/, actionSheet.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Tab1Page.prototype.presentAlertConfirm = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: '¿Estás seguro?',
+                            buttons: [
+                                {
+                                    text: 'Cancelar',
+                                    role: 'cancel',
+                                    cssClass: 'secondary',
+                                    handler: function (blah) {
+                                        console.log('Confirm Cancel: blah');
+                                    }
+                                }, {
+                                    text: 'Confirmar',
+                                    handler: function () {
+                                        console.log('Confirm Okay');
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     Tab1Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -110,7 +192,8 @@ var Tab1Page = /** @class */ (function () {
             template: __webpack_require__(/*! ./tab1.page.html */ "./src/app/tab1/tab1.page.html"),
             styles: [__webpack_require__(/*! ./tab1.page.scss */ "./src/app/tab1/tab1.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_reports_reports_service__WEBPACK_IMPORTED_MODULE_2__["ReportsService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_reports_reports_service__WEBPACK_IMPORTED_MODULE_2__["ReportsService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ActionSheetController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]])
     ], Tab1Page);
     return Tab1Page;
 }());

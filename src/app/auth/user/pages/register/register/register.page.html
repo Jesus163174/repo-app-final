@@ -5,30 +5,30 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
-  <form #form="ngForm" (ngSubmit)="register(form)" method="post">
+  <form #form="ngForm" (ngSubmit)="register()" method="post">
     <ion-item>
         <ion-label position="floating">Nombre</ion-label>
-        <ion-input [(ngModel)]="register.name" name="name"></ion-input>
+        <ion-input [(ngModel)]="user.name" name="name"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Apellido</ion-label>
-      <ion-input [(ngModel)]="register.apellido" name="apellido"></ion-input>
+      <ion-input [(ngModel)]="user.apellido" name="apellido"></ion-input>
   </ion-item>
 
     <ion-item>
       <ion-label position="floating">Tipo</ion-label>
-      <ion-input [(ngModel)]="register.tipo" name="tipo"></ion-input>
+      <ion-input [(ngModel)]="user.rol" name="rol"></ion-input>
   </ion-item>
   
     <ion-item>
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" [(ngModel)]="register.email" name="email"></ion-input>
+      <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
     </ion-item>
   
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="register.password" name="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
     </ion-item>
   
     <ion-button type="submit" expand="full" color="danger">Registrarse</ion-button>

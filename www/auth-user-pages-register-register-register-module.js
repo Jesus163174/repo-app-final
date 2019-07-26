@@ -58,7 +58,7 @@ var RegisterPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"danger\">\r\n    \r\n    <ion-title>Noticias Tuxtla - Registrarse</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content padding>\r\n  <form #form=\"ngForm\" (ngSubmit)=\"register(form)\" method=\"post\">\r\n    <ion-item>\r\n        <ion-label position=\"floating\">Nombre</ion-label>\r\n        <ion-input ngModel name=\"fName\"></ion-input>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Apellido</ion-label>\r\n      <ion-input ngModel name=\"lname\"></ion-input>\r\n  </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Tipo</ion-label>\r\n      <ion-input ngModel name=\"tipo\"></ion-input>\r\n  </ion-item>\r\n  \r\n    <ion-item>\r\n      <ion-label position=\"floating\">Email</ion-label>\r\n      <ion-input type=\"email\" ngModel name=\"email\"></ion-input>\r\n    </ion-item>\r\n  \r\n    <ion-item>\r\n      <ion-label position=\"floating\">Contraseña</ion-label>\r\n      <ion-input type=\"password\" ngModel name=\"password\"></ion-input>\r\n    </ion-item>\r\n  \r\n    <ion-button type=\"submit\" expand=\"full\" color=\"danger\">Registrarse</ion-button>\r\n  </form>\r\n  <p text-center>¿Ya tienes una cuenta?</p>\r\n  <ion-button expand=\"full\" color=\"primary\" routerLink=\"/login\">Iniciar Sesión</ion-button>\r\n</ion-content>  "
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"danger\">\r\n    \r\n    <ion-title>Noticias Tuxtla - Registrarse</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content padding>\r\n  <form #form=\"ngForm\" (ngSubmit)=\"register()\" method=\"post\">\r\n    <ion-item>\r\n        <ion-label position=\"floating\">Nombre</ion-label>\r\n        <ion-input [(ngModel)]=\"user.name\" name=\"name\"></ion-input>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Apellido</ion-label>\r\n      <ion-input [(ngModel)]=\"user.apellido\" name=\"apellido\"></ion-input>\r\n  </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Tipo</ion-label>\r\n      <ion-input [(ngModel)]=\"user.rol\" name=\"rol\"></ion-input>\r\n  </ion-item>\r\n  \r\n    <ion-item>\r\n      <ion-label position=\"floating\">Email</ion-label>\r\n      <ion-input type=\"email\" [(ngModel)]=\"user.email\" name=\"email\"></ion-input>\r\n    </ion-item>\r\n  \r\n    <ion-item>\r\n      <ion-label position=\"floating\">Contraseña</ion-label>\r\n      <ion-input type=\"password\" [(ngModel)]=\"user.password\" name=\"password\"></ion-input>\r\n    </ion-item>\r\n  \r\n    <ion-button type=\"submit\" expand=\"full\" color=\"danger\">Registrarse</ion-button>\r\n  </form>\r\n  <p text-center>¿Ya tienes una cuenta?</p>\r\n  <ion-button expand=\"full\" color=\"primary\" routerLink=\"/login\">Iniciar Sesión</ion-button>\r\n</ion-content>  "
 
 /***/ }),
 
@@ -85,12 +85,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPage", function() { return RegisterPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_auth_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../services/auth/user.service */ "./src/app/services/auth/user.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
 
 
 var RegisterPage = /** @class */ (function () {
-    function RegisterPage() {
+    function RegisterPage(router, loadingController, userService) {
+        this.router = router;
+        this.loadingController = loadingController;
+        this.userService = userService;
+        this.user = {};
     }
+    RegisterPage.prototype.register = function () {
+        var _this = this;
+        this.userService.register(this.user).subscribe(function (result) {
+            _this.presentLoadingWithOptions();
+            _this.router.navigate(['tabs/tab1']);
+        }, function (error) {
+            alert("Error al registrarse");
+        });
+    };
     RegisterPage.prototype.ngOnInit = function () {
+    };
+    RegisterPage.prototype.presentLoadingWithOptions = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var loading;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.loadingController.create({
+                            spinner: 'circles',
+                            duration: 1000,
+                            message: 'Registrado correctamente',
+                            translucent: true,
+                            cssClass: 'custom-class custom-loading'
+                        })];
+                    case 1:
+                        loading = _a.sent();
+                        return [4 /*yield*/, loading.present()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
     };
     RegisterPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -98,7 +137,7 @@ var RegisterPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./register.page.html */ "./src/app/auth/user/pages/register/register/register.page.html"),
             styles: [__webpack_require__(/*! ./register.page.scss */ "./src/app/auth/user/pages/register/register/register.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"], _services_auth_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
     ], RegisterPage);
     return RegisterPage;
 }());

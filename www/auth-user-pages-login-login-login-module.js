@@ -58,7 +58,7 @@ var LoginPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"danger\">\r\n    \r\n    <ion-title>Noticias Tuxtla - Iniciar Sesión</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content padding>\r\n  <form #form=\"ngForm\" (ngSubmit)=\"login(form)\" method=\"post\">\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Email</ion-label>\r\n      <ion-input ngModel type=\"email\" name=\"email\"></ion-input>\r\n    </ion-item>\r\n  \r\n    <ion-item>\r\n      <ion-label position=\"floating\">Contraseña</ion-label>\r\n      <ion-input ngModel type=\"password\" name=\"password\"></ion-input>\r\n    </ion-item>\r\n\r\n  \r\n    <ion-button type=\"submit\" expand=\"full\" color=\"danger\">Iniciar Sesión</ion-button>\r\n  </form>\r\n  <p text-center>¿No tienes una cuenta?</p>\r\n  <ion-button routerLink=\"/register\" expand=\"full\" color=\"primary\" >Registrarse</ion-button>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"danger\">\r\n    \r\n    <ion-title>Noticias Tuxtla - Iniciar Sesión</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content padding>\r\n  <form  (ngSubmit)=\"login()\" method=\"post\">\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Email</ion-label>\r\n      <ion-input ngModel type=\"email\" [(ngModel)]=\"user.email\" name=\"email\"></ion-input>\r\n    </ion-item>\r\n  \r\n    <ion-item>\r\n      <ion-label position=\"floating\">Contraseña</ion-label>\r\n      <ion-input ngModel type=\"password\" [(ngModel)]=\"user.password\" name=\"password\"></ion-input>\r\n    </ion-item>\r\n\r\n  \r\n    <ion-button type=\"submit\" expand=\"full\" color=\"danger\">Iniciar Sesión</ion-button>\r\n  </form>\r\n  <p text-center>¿No tienes una cuenta?</p>\r\n  <ion-button routerLink=\"/register\" expand=\"full\" color=\"primary\" >Registrarse</ion-button>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -85,12 +85,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPage", function() { return LoginPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_auth_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../services/auth/user.service */ "./src/app/services/auth/user.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
 
 
 var LoginPage = /** @class */ (function () {
-    function LoginPage() {
+    function LoginPage(userService, router, loadingController) {
+        this.userService = userService;
+        this.router = router;
+        this.loadingController = loadingController;
+        this.user = {};
     }
+    LoginPage.prototype.login = function () {
+        var _this = this;
+        this.userService.login(this.user).subscribe(function (result) {
+            _this.router.navigate(['tabs/tab1']);
+            _this.presentLoadingWithOptions();
+        }, function (error) {
+            console.log(error.message);
+        });
+    };
     LoginPage.prototype.ngOnInit = function () {
+    };
+    LoginPage.prototype.presentLoadingWithOptions = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var loading;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.loadingController.create({
+                            spinner: 'circles',
+                            duration: 1000,
+                            message: 'Logeado correctamente',
+                            translucent: true,
+                            cssClass: 'custom-class custom-loading'
+                        })];
+                    case 1:
+                        loading = _a.sent();
+                        return [4 /*yield*/, loading.present()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
     };
     LoginPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -98,7 +137,7 @@ var LoginPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.page.html */ "./src/app/auth/user/pages/login/login/login.page.html"),
             styles: [__webpack_require__(/*! ./login.page.scss */ "./src/app/auth/user/pages/login/login/login.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_auth_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"]])
     ], LoginPage);
     return LoginPage;
 }());

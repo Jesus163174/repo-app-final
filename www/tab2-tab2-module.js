@@ -81,12 +81,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_reports_reports_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/reports/reports.service */ "./src/app/services/reports/reports.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
 
 
 
 
 var Tab2Page = /** @class */ (function () {
-    function Tab2Page(reportService, router) {
+    function Tab2Page(navCtrl, reportService, router) {
+        this.navCtrl = navCtrl;
         this.reportService = reportService;
         this.router = router;
         this.reportes = {};
@@ -94,7 +97,7 @@ var Tab2Page = /** @class */ (function () {
     Tab2Page.prototype.addReport = function () {
         var _this = this;
         this.reportService.addReports(this.reportes).subscribe(function (data) {
-            _this.router.navigate(['/tabs/tab1'], { state: { updateInfos: true } });
+            _this.navCtrl.navigateRoot(['/tabs/tab1']);
         }, function (error) { return alert(error.message); });
     };
     Tab2Page.prototype.ngOnInit = function () { };
@@ -104,7 +107,7 @@ var Tab2Page = /** @class */ (function () {
             template: __webpack_require__(/*! ./tab2.page.html */ "./src/app/tab2/tab2.page.html"),
             styles: [__webpack_require__(/*! ./tab2.page.scss */ "./src/app/tab2/tab2.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_reports_reports_service__WEBPACK_IMPORTED_MODULE_2__["ReportsService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavController"], _services_reports_reports_service__WEBPACK_IMPORTED_MODULE_2__["ReportsService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], Tab2Page);
     return Tab2Page;
 }());

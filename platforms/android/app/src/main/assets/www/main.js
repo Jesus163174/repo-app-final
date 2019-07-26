@@ -450,11 +450,17 @@ var map = {
 	],
 	"./auth/user/pages/login/login/login.module": [
 		"./src/app/auth/user/pages/login/login/login.module.ts",
+		"common",
 		"auth-user-pages-login-login-login-module"
 	],
 	"./auth/user/pages/register/register/register.module": [
 		"./src/app/auth/user/pages/register/register/register.module.ts",
+		"common",
 		"auth-user-pages-register-register-register-module"
+	],
+	"./detallereporte/detallereporte.module": [
+		"./src/app/detallereporte/detallereporte.module.ts",
+		"detallereporte-detallereporte-module"
 	],
 	"./tabs/tabs.module": [
 		"./src/app/tabs/tabs.module.ts",
@@ -500,9 +506,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
     { path: 'login', loadChildren: './auth/user/pages/login/login/login.module#LoginPageModule' },
-    { path: 'register', loadChildren: './auth/user/pages/register/register/register.module#RegisterPageModule' }
+    { path: 'register', loadChildren: './auth/user/pages/register/register/register.module#RegisterPageModule' },
+    { path: 'detallereporte', loadChildren: './detallereporte/detallereporte.module#DetallereportePageModule' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
