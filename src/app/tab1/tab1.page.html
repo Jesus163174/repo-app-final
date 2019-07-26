@@ -4,7 +4,6 @@
     </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-    <ion-button (click)="getReports(0)"></ion-button>
     <ion-card *ngFor="let report of reports">
         <img [src]="report.imagen" />
         <ion-card-header>

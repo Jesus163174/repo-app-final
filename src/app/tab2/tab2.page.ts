@@ -15,7 +15,7 @@ export class Tab2Page implements OnInit{
     
     addReport(){
         this.reportService.addReports(this.reportes).subscribe((data)=>{
-            this.navCtrl.navigateForward(['/tabs/tab1']);
+            this.navCtrl.navigateRoot(['/tabs/tab1']);
         },error => alert(error.message));        
     }
 
