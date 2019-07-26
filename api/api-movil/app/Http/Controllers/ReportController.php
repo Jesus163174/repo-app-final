@@ -9,11 +9,12 @@ class ReportController extends Controller{
     public function index(){
         $data = null;
         try{    
-            $reports = Report::getReports();
+            $reports = Report::getReports()->user()->get();
+            
             $data = array(
                 'reports'=>$reports,
                 'succes'=>true,
-                'length'=>count($reports),
+                'length'=>$reports->count(),
                 'status'=>202,
                 "message"=>''
             );
@@ -31,18 +32,19 @@ class ReportController extends Controller{
 
     }
     public function store(Request $request){
-        $reponse = null;
+        $response = null;
         try{
-            $report    = new Report();
-            $validated = $report->validate($request);
-            $save      = $report->store($validated->all());
-            $reponse = array(
+            $report = new Report();
+            //return $request;
+            $request['fecha'] = now()->format('Y-m-d');
+            $save   = $report->store($request->all());
+            $response = array(
                 'message'=>'Reporte creado exitosamente',
                 'status'=>202
             );
-            return response()->json($date,200);
+            return response()->json($response,200);
         }catch(Exception $e){
-            $reponse = array(
+            $response = array(
                 'message'=>'Error al crear reporte, '.$e->getMessage(),
                 'status'=>202
             );

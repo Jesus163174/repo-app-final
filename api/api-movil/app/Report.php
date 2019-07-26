@@ -6,18 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model{
 
-    private $table = 'reports';
-    private $primaryKey = 'id';
-    private $fillable = [
+    protected $table = 'reports';
+    protected $primaryKey = 'id';
+    protected $fillable = [
         'nameReport',
         'imagen',
         'fecha',
-        'usuario'
+        'usuario',
+        'descripcion'
     ];
     public function user(){
         return $this->belongsTo('App\User');
     }
-    public function scopeGetAllReports($query){
+    public function scopeGetReports($query){
         return $query->orderById();
     }
     public function scopeGetReportsByReporter($query,$user){
@@ -36,7 +37,7 @@ class Report extends Model{
         ]);
     }
     public function store($request){
-        return User::create($request);
+        return Report::create($request);
     }
     public function edit($request,$report){
         return $report->fill($request)->save();
