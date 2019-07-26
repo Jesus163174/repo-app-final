@@ -7,13 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+    private user = {};
+    constructor() { }
 
-  login(){
+    login(){
      
-  }
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }
