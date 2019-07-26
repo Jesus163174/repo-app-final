@@ -1,26 +1,27 @@
 pantallas
-    login
+    login => ready
         datos para logearse
             *correo
             *contraseña
-    registro
+    registro => ready
         datos de registro
             *nombre
             *correo
             *contraseña
             *tipo
-    home    
-        listado de todas las noticas
-        boton de agregar nueva noticia
+    home  
+        listado de todas las noticas => ready
+        boton de agregar nueva noticia => ready
     
-    agregar nueva noticia
+    agregar nueva noticia => ready
         datos de registro
             *nombre
             *descripción
             *fecha
             *imagen
             *usuario
-    detalle
+            *typo => cambiar a un select
+    detalle => falta
         mostrar los datos de la noticia seleccionada
         botton para editar una noticia y te abrira un openaction
         editar todos los datos menos imagen
