@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import {ReportsService} from '../services/reports/reports.service';
 import { ActionSheetController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { RouterLink } from '@angular/router';
+import {UserService} from '../services/auth/user.service';
+import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -12,11 +13,18 @@ import { RouterLink } from '@angular/router';
 export class Tab1Page {
 
     private reports:any=null;
+    private dataUser:any = [];
     constructor(
-        private reportServices:ReportsService, public actionSheetController: ActionSheetController,
-        public alertController: AlertController
-    ) {
+        private reportServices:ReportsService, 
+        private actionSheetController: ActionSheetController,
+        private alertController: AlertController,
+        private userService : UserService,
+        private router: Router,
+        private loadingController: LoadingController
+    ){
         this.getReports(0);
+        this.dataUser = this.userService.auth();
+        console.log(this.userService.auth())
     }
     ngOnInit(){
         this.getReports(0);
@@ -25,8 +33,6 @@ export class Tab1Page {
         this.getReports(0);
     }
     getReports(reporter_id){
-        
-        //this.reports = this.reportServices.reportsByReporter(reporter_id);
         this.reportServices.reportsByReporter(reporter_id).subscribe((reports)=>{
             console.log(reports);
             this.reports = reports['reports'];
@@ -36,7 +42,21 @@ export class Tab1Page {
             alert("error");
         });
     }
-
+    logout(){
+        this.userService.logout();
+        this.presentLoadingWithOptions();
+        this.router.navigate(['/login']);
+    }
+    async presentLoadingWithOptions() {
+        const loading = await this.loadingController.create({
+          spinner: 'circles',
+          duration: 1000,
+          message: 'Cerrando sesión',
+          translucent: true,
+          cssClass: 'custom-class custom-loading'
+        });
+        return await loading.present();
+    }
     async presentActionSheet() {
         const actionSheet = await this.actionSheetController.create({
           header: 'Noticias',

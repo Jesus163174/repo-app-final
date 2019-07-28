@@ -44,4 +44,9 @@ export class UserService {
     public auth(){
         return JSON.parse(localStorage.getItem('auth'));
     }
+
+    public logout(){
+        localStorage.removeItem('active');
+        localStorage.removeItem('auth');
+    }
 }

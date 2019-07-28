@@ -1,38 +1,36 @@
 <ion-header>
-  <ion-toolbar color="danger">
-    
-    <ion-title>Noticias Tuxtla - Registrarse</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="danger">
+        <ion-title>Noticias Tuxtla - Registrarse</ion-title>
+    </ion-toolbar>
 </ion-header>
 <ion-content padding>
-  <form #form="ngForm" (ngSubmit)="register()" method="post">
-    <ion-item>
-        <ion-label position="floating">Nombre</ion-label>
-        <ion-input [(ngModel)]="user.name" name="name"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Apellido</ion-label>
-      <ion-input [(ngModel)]="user.apellido" name="apellido"></ion-input>
-  </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Tipo</ion-label>
-      <ion-input [(ngModel)]="user.rol" name="rol"></ion-input>
-  </ion-item>
+    <form #form="ngForm" (ngSubmit)="register()" method="post">
+        <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input [(ngModel)]="user.name" name="name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Apellido</ion-label>
+            <ion-input [(ngModel)]="user.apellido" name="apellido"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Tipo de usuario</ion-label>
+            <ion-select  [(ngModel)]="user.rol" name="rol" placeholder="Selecciona una opción">
+            <ion-select-option value="reportero">Reportero</ion-select-option>
+            <ion-select-option value="lector">Lector</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
+        </ion-item>
   
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
-    </ion-item>
-  
-    <ion-button type="submit" expand="full" color="danger">Registrarse</ion-button>
-  </form>
-  <p text-center>¿Ya tienes una cuenta?</p>
-  <ion-button expand="full" color="primary" routerLink="/login">Iniciar Sesión</ion-button>
+        <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand="full" color="danger">Registrarse</ion-button>
+    </form>
+    <p text-center>¿Ya tienes una cuenta?</p>
+    <ion-button expand="full" color="primary" routerLink="/login">Iniciar Sesión</ion-button>
 </ion-content>  

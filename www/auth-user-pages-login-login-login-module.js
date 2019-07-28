@@ -99,17 +99,24 @@ var LoginPage = /** @class */ (function () {
         this.router = router;
         this.loadingController = loadingController;
         this.user = {};
+        if (this.userService.isActive() == 'true')
+            this.router.navigate(['tabs/tab1']);
     }
+    LoginPage.prototype.ngOnInit = function () { };
     LoginPage.prototype.login = function () {
         var _this = this;
+        if (this.user['email'] === undefined && this.user['password'] === undefined) {
+            alert("proporciona tus credenciales");
+            return;
+        }
         this.userService.login(this.user).subscribe(function (result) {
+            _this.user = {};
+            _this.userService.saveUserData(result);
             _this.router.navigate(['tabs/tab1']);
             _this.presentLoadingWithOptions();
         }, function (error) {
-            console.log(error.message);
+            alert("Email o password incorrectos");
         });
-    };
-    LoginPage.prototype.ngOnInit = function () {
     };
     LoginPage.prototype.presentLoadingWithOptions = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -137,7 +144,9 @@ var LoginPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.page.html */ "./src/app/auth/user/pages/login/login/login.page.html"),
             styles: [__webpack_require__(/*! ./login.page.scss */ "./src/app/auth/user/pages/login/login/login.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_auth_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_auth_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"]])
     ], LoginPage);
     return LoginPage;
 }());

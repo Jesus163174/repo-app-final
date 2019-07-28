@@ -419,6 +419,20 @@ var UserService = /** @class */ (function () {
             headers: {}
         });
     };
+    UserService.prototype.isActive = function () {
+        return localStorage.getItem('active');
+    };
+    UserService.prototype.saveUserData = function (user) {
+        localStorage.setItem('auth', JSON.stringify(user));
+        localStorage.setItem('active', 'true');
+    };
+    UserService.prototype.auth = function () {
+        return JSON.parse(localStorage.getItem('auth'));
+    };
+    UserService.prototype.logout = function () {
+        localStorage.removeItem('active');
+        localStorage.removeItem('auth');
+    };
     UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
