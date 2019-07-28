@@ -10,10 +10,14 @@ import { LoadingController } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
     private user = {};
-    constructor(private userService:UserService,private router: Router,public loadingController: LoadingController) { }
+    constructor(private userService:UserService,private router: Router,public loadingController: LoadingController) {
+        if(this.userService.isActive() == 'true')
+            this.router.navigate(['tabs/tab1']);
+    }
 
     login(){
         this.userService.login(this.user).subscribe((result)=>{
+            this.userService.saveUserData(result);
             this.router.navigate(['tabs/tab1']);
             this.presentLoadingWithOptions();
         },(error)=>{

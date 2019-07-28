@@ -31,6 +31,17 @@ export class UserService {
             headers:{
 
             }
-        })
+        });
+    }
+    public isActive(){
+        return localStorage.getItem('active');
+    }
+    public saveUserData(user){
+        localStorage.setItem('auth',JSON.stringify(user));
+        localStorage.setItem('active','true');
+    }
+
+    public auth(){
+        return JSON.parse(localStorage.getItem('auth'));
     }
 }
