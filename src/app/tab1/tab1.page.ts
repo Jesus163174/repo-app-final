@@ -52,7 +52,7 @@ export class Tab1Page {
         });
         return await loading.present();
     }
-    async presentActionSheet() {
+    async presentActionSheet(report) {
         const actionSheet = await this.actionSheetController.create({
           header: 'Noticias',
           buttons: [{
@@ -68,8 +68,17 @@ export class Tab1Page {
             icon: 'create',
             handler: () => {
               console.log('Favorite clicked');
-              
+              this.presentAlertPrompt(report);
             }
+            },{
+              text: 'Detalle',
+              icon: 'eye',
+              handler: () => {
+                console.log('Favorite clicked');
+                this.router.navigate([`/detallereporte/${report.id}`]);
+              
+                
+              },
           }, {
             text: 'Cancelar',
             icon: 'close',
@@ -97,6 +106,45 @@ export class Tab1Page {
               text: 'Confirmar',
               handler: () => {
                 console.log('Confirm Okay');
+              }
+            }
+          ]
+        });
+    
+        await alert.present();
+      }
+
+      async presentAlertPrompt(report) {
+        const alert = await this.alertController.create({
+          header: 'Editar Noticia',
+          inputs: [
+            {
+              name: 'name',
+              type: 'text',
+              value: report.nameReport,
+              placeholder: 'Nombre'
+            },
+            {
+              name: 'desc',
+              type: 'text',
+              value: report.descripcion,
+              placeholder: 'Descripción'
+            },
+          ],
+          buttons: [
+            {
+              text: 'Cancelar',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: () => {
+                console.log('Cancelar');
+              }
+            }, {
+              text: 'Guardar',
+              handler: data => {
+                console.log('Confirm Ok');
+                console.log(data.name);
+                console.log(data.desc);
               }
             }
           ]
