@@ -491,6 +491,8 @@ var ReportsService = /** @class */ (function () {
         });
     };
     ReportsService.prototype.updateReports = function (id, nameReport, descripcion) {
+        var endpoint = this.api_url_reports + "/" + id;
+        return this.http.put(endpoint, { nameReport: nameReport, descripcion: descripcion });
     };
     ReportsService.prototype.getReport = function (reportId) {
         var endpoint = this.api_url_reports + "/" + reportId;

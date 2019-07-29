@@ -227,6 +227,7 @@ var Tab1Page = /** @class */ (function () {
     Tab1Page.prototype.presentAlertPrompt = function (report) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var alert;
+            var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.alertController.create({
@@ -259,6 +260,9 @@ var Tab1Page = /** @class */ (function () {
                                         console.log('Confirm Ok');
                                         console.log(data.name);
                                         console.log(data.desc);
+                                        _this.reportServices.updateReports(report.id, data.name, data.desc).subscribe((function (data) {
+                                            _this.updateReportSuccessful(report.id);
+                                        }));
                                     }
                                 }
                             ]
@@ -272,6 +276,10 @@ var Tab1Page = /** @class */ (function () {
                 }
             });
         });
+    };
+    Tab1Page.prototype.updateReportSuccessful = function (report) {
+        alert("Reporte actualizado correctamente");
+        this.router.navigate(["/detallereporte/" + report]);
     };
     Tab1Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

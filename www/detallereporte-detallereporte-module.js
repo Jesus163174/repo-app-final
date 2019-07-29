@@ -58,7 +58,7 @@ var DetallereportePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"danger\">\r\n    <ion-title>Detalle Noticia</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content fullscreen>\r\n  <ion-card >\r\n      <img  [src]=\"report.imagen\"/>\r\n      <ion-card-header>\r\n          <ion-card-subtitle>{{report.fecha | date}}</ion-card-subtitle>\r\n          <ion-card-subtitle>Reportado por: {{reporter.name}}</ion-card-subtitle>\r\n          <ion-card-title>{{report.nameReport}}</ion-card-title>\r\n      </ion-card-header>\r\n      <ion-card-content>\r\n          {{report.descripcion}} <br>\r\n      </ion-card-content>\r\n  </ion-card>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"danger\">\r\n    <ion-title>Detalle Noticia</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content fullscreen>\r\n  <ion-card >\r\n      <img [src]=\"report.imagen\"/>\r\n      <ion-card-header>\r\n          <ion-card-subtitle>{{report.fecha | date}}</ion-card-subtitle>\r\n          <ion-card-subtitle>Reportado por: {{reporter.name}}</ion-card-subtitle>\r\n          <ion-card-title>{{report.nameReport}}</ion-card-title>\r\n      </ion-card-header>\r\n      <ion-card-content>\r\n          {{report.descripcion}} <br>\r\n      </ion-card-content>\r\n  </ion-card>\r\n</ion-content>\r\n"
 
 /***/ }),
 
