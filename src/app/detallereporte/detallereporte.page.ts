@@ -37,15 +37,6 @@ export class DetallereportePage implements OnInit {
           this.presentAlertPrompt(report);
         }
       }, {
-        text: 'Detalle',
-        icon: 'eye',
-        handler: () => {
-          console.log('Favorite clicked');
-          this.router.navigate([`/detallereporte/${report.id}`]);
-
-
-        },
-      }, {
         text: 'Cancelar',
         icon: 'close',
         role: 'cancel',

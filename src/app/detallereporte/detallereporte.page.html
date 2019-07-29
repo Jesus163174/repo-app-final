@@ -5,13 +5,11 @@
 </ion-header>
 
 <ion-content fullscreen>
-<<<<<<< HEAD
-  <ion-card  (click)="presentActionSheet(report)">
-      <img  />
-=======
-  <ion-card >
+
+
+  <ion-card (click)="presentActionSheet(report)">
       <img [src]="report.imagen"/>
->>>>>>> 4620f96c329d4496edda2b604c0ca7f843f786a5
+
       <ion-card-header>
           <ion-card-subtitle>{{report.fecha | date}}</ion-card-subtitle>
           <ion-card-subtitle>Reportado por: {{reporter.name}}</ion-card-subtitle>
