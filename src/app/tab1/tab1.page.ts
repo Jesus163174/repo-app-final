@@ -74,8 +74,16 @@ export class Tab1Page {
             handler: () => {
               console.log('Favorite clicked');
               this.presentAlertPrompt(report);
-              
             }
+            },{
+              text: 'Detalle',
+              icon: 'eye',
+              handler: () => {
+                console.log('Favorite clicked');
+                this.router.navigate([`/detallereporte/${report.id}`]);
+              
+                
+              },
           }, {
             text: 'Cancelar',
             icon: 'close',
