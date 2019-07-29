@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../../../../services/auth/user.service';
+import { UserService } from '../../../../../services/auth/user.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 @Component({
@@ -10,20 +10,29 @@ import { LoadingController } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
     private user = {};
-    constructor(private userService:UserService,private router: Router,public loadingController: LoadingController) { }
-
+    constructor(
+        private userService:UserService,
+        private router: Router,
+        public loadingController: LoadingController
+    ){
+        if(this.userService.isActive() == 'true')
+            this.router.navigate(['tabs/tab1']);
+    }
+    ngOnInit() {}
     login(){
+        if(this.user['email'] === undefined && this.user['password'] === undefined){
+            alert("proporciona tus credenciales");
+            return;
+        }
         this.userService.login(this.user).subscribe((result)=>{
+            this.user = {}
+            this.userService.saveUserData(result);
             this.router.navigate(['tabs/tab1']);
             this.presentLoadingWithOptions();
         },(error)=>{
-            console.log(error.message);
+            alert("Email o password incorrectos");
         });
     }
-
-    ngOnInit() {
-    }
-
     async presentLoadingWithOptions() {
         const loading = await this.loadingController.create({
           spinner: 'circles',

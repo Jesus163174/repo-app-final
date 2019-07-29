@@ -58,7 +58,7 @@ var RegisterPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"danger\">\r\n    \r\n    <ion-title>Noticias Tuxtla - Registrarse</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content padding>\r\n  <form #form=\"ngForm\" (ngSubmit)=\"register()\" method=\"post\">\r\n    <ion-item>\r\n        <ion-label position=\"floating\">Nombre</ion-label>\r\n        <ion-input [(ngModel)]=\"user.name\" name=\"name\"></ion-input>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Apellido</ion-label>\r\n      <ion-input [(ngModel)]=\"user.apellido\" name=\"apellido\"></ion-input>\r\n  </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Tipo</ion-label>\r\n      <ion-input [(ngModel)]=\"user.rol\" name=\"rol\"></ion-input>\r\n  </ion-item>\r\n  \r\n    <ion-item>\r\n      <ion-label position=\"floating\">Email</ion-label>\r\n      <ion-input type=\"email\" [(ngModel)]=\"user.email\" name=\"email\"></ion-input>\r\n    </ion-item>\r\n  \r\n    <ion-item>\r\n      <ion-label position=\"floating\">Contraseña</ion-label>\r\n      <ion-input type=\"password\" [(ngModel)]=\"user.password\" name=\"password\"></ion-input>\r\n    </ion-item>\r\n  \r\n    <ion-button type=\"submit\" expand=\"full\" color=\"danger\">Registrarse</ion-button>\r\n  </form>\r\n  <p text-center>¿Ya tienes una cuenta?</p>\r\n  <ion-button expand=\"full\" color=\"primary\" routerLink=\"/login\">Iniciar Sesión</ion-button>\r\n</ion-content>  "
+module.exports = "<ion-header>\r\n    <ion-toolbar color=\"danger\">\r\n        <ion-title>Noticias Tuxtla - Registrarse</ion-title>\r\n    </ion-toolbar>\r\n</ion-header>\r\n<ion-content padding>\r\n    <form #form=\"ngForm\" (ngSubmit)=\"register()\" method=\"post\">\r\n        <ion-item>\r\n            <ion-label position=\"floating\">Nombre</ion-label>\r\n            <ion-input [(ngModel)]=\"user.name\" name=\"name\"></ion-input>\r\n        </ion-item>\r\n        <ion-item>\r\n            <ion-label position=\"floating\">Apellido</ion-label>\r\n            <ion-input [(ngModel)]=\"user.apellido\" name=\"apellido\"></ion-input>\r\n        </ion-item>\r\n        <ion-item>\r\n            <ion-label>Tipo de usuario</ion-label>\r\n            <ion-select  [(ngModel)]=\"user.rol\" name=\"rol\" placeholder=\"Selecciona una opción\">\r\n            <ion-select-option value=\"reportero\">Reportero</ion-select-option>\r\n            <ion-select-option value=\"lector\">Lector</ion-select-option>\r\n            </ion-select>\r\n        </ion-item>\r\n        <ion-item>\r\n            <ion-label position=\"floating\">Email</ion-label>\r\n            <ion-input type=\"email\" [(ngModel)]=\"user.email\" name=\"email\"></ion-input>\r\n        </ion-item>\r\n  \r\n        <ion-item>\r\n            <ion-label position=\"floating\">Contraseña</ion-label>\r\n            <ion-input type=\"password\" [(ngModel)]=\"user.password\" name=\"password\"></ion-input>\r\n        </ion-item>\r\n        <ion-button type=\"submit\" expand=\"full\" color=\"danger\">Registrarse</ion-button>\r\n    </form>\r\n    <p text-center>¿Ya tienes una cuenta?</p>\r\n    <ion-button expand=\"full\" color=\"primary\" routerLink=\"/login\">Iniciar Sesión</ion-button>\r\n</ion-content>  "
 
 /***/ }),
 
@@ -100,10 +100,23 @@ var RegisterPage = /** @class */ (function () {
         this.userService = userService;
         this.user = {};
     }
+    RegisterPage.prototype.validate = function () {
+        if (this.user['name'] === undefined &&
+            this.user['apellido'] === undefined &&
+            this.user['password'] === undefined &&
+            this.user['rol'] === undefined)
+            return false;
+    };
     RegisterPage.prototype.register = function () {
         var _this = this;
+        if (this.validate() == false) {
+            alert("Proporciona todos tus datos");
+            return;
+        }
         this.userService.register(this.user).subscribe(function (result) {
             _this.presentLoadingWithOptions();
+            _this.userService.saveUserData(result);
+            console.log("registro: " + JSON.stringify(result));
             _this.router.navigate(['tabs/tab1']);
         }, function (error) {
             alert("Error al registrarse");

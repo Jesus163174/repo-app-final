@@ -11,9 +11,25 @@ export class RegisterPage implements OnInit {
     public user = {};
     constructor(private router: Router,public loadingController: LoadingController,private userService: UserService) { }
 
+    public validate(){
+        if(
+            this.user['name'] === undefined &&
+            this.user['apellido'] === undefined &&
+            this.user['password'] === undefined &&
+            this.user['rol'] === undefined
+        )
+            return false;
+    }
+
     register(){
+        if(this.validate() == false){
+            alert("Proporciona todos tus datos");
+            return;
+        }
         this.userService.register(this.user).subscribe((result)=>{
            this.presentLoadingWithOptions();
+           this.userService.saveUserData(result);
+           console.log("registro: "+JSON.stringify(result));
            this.router.navigate(['tabs/tab1']);
         },(error)=>{
            alert("Error al registrarse");

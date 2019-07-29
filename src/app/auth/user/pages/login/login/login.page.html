@@ -1,24 +1,20 @@
 <ion-header>
-  <ion-toolbar color="danger">
-    
-    <ion-title>Noticias Tuxtla - Iniciar Sesión</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="danger">
+        <ion-title>Noticias Tuxtla - Iniciar Sesión</ion-title>
+    </ion-toolbar>
 </ion-header>
 <ion-content padding>
-  <form  (ngSubmit)="login()" method="post">
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input ngModel type="email" [(ngModel)]="user.email" name="email"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input ngModel type="password" [(ngModel)]="user.password" name="password"></ion-input>
-    </ion-item>
-
-  
-    <ion-button type="submit" expand="full" color="danger">Iniciar Sesión</ion-button>
-  </form>
-  <p text-center>¿No tienes una cuenta?</p>
-  <ion-button routerLink="/register" expand="full" color="primary" >Registrarse</ion-button>
+    <form (ngSubmit)="login()" method="post">
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input ngModel type="email" [(ngModel)]="user.email" name="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input ngModel type="password" [(ngModel)]="user.password" name="password"></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand="full" color="danger">Iniciar Sesión</ion-button>
+    </form>
+    <p text-center>¿No tienes una cuenta?</p>
+    <ion-button routerLink="/register" expand="full" color="primary" >Registrarse</ion-button>
 </ion-content>

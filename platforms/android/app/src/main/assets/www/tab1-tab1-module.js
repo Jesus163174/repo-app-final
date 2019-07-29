@@ -52,7 +52,7 @@ var Tab1PageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header  translucent>\r\n    <ion-toolbar color=\"danger\">\r\n        <ion-title>Noticias Tuxtla</ion-title>\r\n    </ion-toolbar>\r\n</ion-header>\r\n<ion-content fullscreen>\r\n    <ion-card *ngFor=\"let report of reports\" (click)=\"presentActionSheet()\">\r\n        <img [src]=\"report.imagen\" />\r\n        <ion-card-header>\r\n            <ion-card-subtitle>{{report.nameReport}}</ion-card-subtitle>\r\n            <ion-card-title>{{report.fecha}}</ion-card-title>\r\n        </ion-card-header>\r\n        <ion-card-content>\r\n            {{report.descripcion}}\r\n        </ion-card-content>\r\n    </ion-card>\r\n</ion-content>\r\n<ion-fab routerLink=\"/tabs/tab2\" vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\r\n    <ion-fab-button color=\"danger\" size=\"small\">\r\n        <ion-icon name=\"add\"></ion-icon>\r\n    </ion-fab-button>\r\n</ion-fab>\r\n"
+module.exports = "<ion-header  translucent>\r\n    <ion-toolbar color=\"danger\">\r\n        <ion-title>Noticias Tuxtla</ion-title>\r\n    </ion-toolbar>\r\n</ion-header>\r\n<ion-content fullscreen class=\"background-primary\">\r\n    <ion-card>\r\n        <ion-item>\r\n            <ion-icon name=\"person\" slot=\"start\"></ion-icon>\r\n            <ion-label>{{dataUser.name}}</ion-label>\r\n            <ion-button *ngIf=\"dataUser.rol == 'administrador' || dataUser.rol == 'reportero' \" fill=\"outline\" color=\"danger\" slot=\"end\">\r\n                <ion-icon name=\"paper\"></ion-icon> 10\r\n            </ion-button>\r\n        </ion-item>\r\n        <ion-card-content>\r\n            <ion-button (click)=\"logout()\" expand=\"full\" color=\"danger\">Salir</ion-button>\r\n        </ion-card-content>\r\n    </ion-card>\r\n    <ion-card *ngFor=\"let report of reports\" (click)=\"presentActionSheet()\">\r\n        <img [src]=\"report.imagen\" />\r\n        <ion-card-header>\r\n            <ion-card-subtitle>{{report.nameReport}}</ion-card-subtitle>\r\n            <ion-card-title>{{report.fecha}}</ion-card-title>\r\n        </ion-card-header>\r\n        <ion-card-content>\r\n            {{report.descripcion}}\r\n        </ion-card-content>\r\n    </ion-card>\r\n</ion-content>\r\n<ion-fab routerLink=\"/tabs/tab2\" vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\r\n    <ion-fab-button color=\"danger\" size=\"small\">\r\n        <ion-icon name=\"add\"></ion-icon>\r\n    </ion-fab-button>\r\n</ion-fab>\r\n"
 
 /***/ }),
 
@@ -63,7 +63,7 @@ module.exports = "<ion-header  translucent>\r\n    <ion-toolbar color=\"danger\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".welcome-card img {\n  max-height: 35vh;\n  overflow: hidden; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFiMS9DOlxcVXNlcnNcXHVzdWFyaW9cXERvY3VtZW50c1xcZGV2anNcXGFwbGljYWNpb25lcyBtb3ZpbGVzXFxmaW5hbC9zcmNcXGFwcFxcdGFiMVxcdGFiMS5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxnQkFBZ0I7RUFDaEIsZ0JBQWdCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC90YWIxL3RhYjEucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLndlbGNvbWUtY2FyZCBpbWcge1xuICBtYXgtaGVpZ2h0OiAzNXZoO1xuICBvdmVyZmxvdzogaGlkZGVuO1xufVxuIl19 */"
+module.exports = ".welcome-card img {\n  max-height: 35vh;\n  overflow: hidden; }\n\n.avatar {\n  width: 20px;\n  height: 20px; }\n\n.padding-profile {\n  padding: 20px 20px; }\n\n.profile {\n  display: flex;\n  justify-content: space-between;\n  align-items: center; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFiMS9DOlxcVXNlcnNcXHVzdWFyaW9cXERvY3VtZW50c1xcZGV2anNcXGFwbGljYWNpb25lcyBtb3ZpbGVzXFxmaW5hbC9zcmNcXGFwcFxcdGFiMVxcdGFiMS5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxnQkFBZ0I7RUFDaEIsZ0JBQWdCLEVBQUE7O0FBRWxCO0VBQ0UsV0FBVztFQUNYLFlBQVksRUFBQTs7QUFFZDtFQUNFLGtCQUFrQixFQUFBOztBQUdwQjtFQUNFLGFBQWE7RUFDYiw4QkFBOEI7RUFDOUIsbUJBQW1CLEVBQUEiLCJmaWxlIjoic3JjL2FwcC90YWIxL3RhYjEucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLndlbGNvbWUtY2FyZCBpbWcge1xuICBtYXgtaGVpZ2h0OiAzNXZoO1xuICBvdmVyZmxvdzogaGlkZGVuO1xufVxuLmF2YXRhcntcbiAgd2lkdGg6IDIwcHg7XG4gIGhlaWdodDogMjBweDtcbn1cbi5wYWRkaW5nLXByb2ZpbGV7XG4gIHBhZGRpbmc6IDIwcHggMjBweDtcbn1cblxuLnByb2ZpbGV7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn0iXX0= */"
 
 /***/ }),
 
@@ -81,18 +81,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_reports_reports_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/reports/reports.service */ "./src/app/services/reports/reports.service.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _services_auth_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/auth/user.service */ "./src/app/services/auth/user.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
 
 
 
 
 
 var Tab1Page = /** @class */ (function () {
-    function Tab1Page(reportServices, actionSheetController, alertController) {
+    function Tab1Page(reportServices, actionSheetController, alertController, userService, router, loadingController) {
         this.reportServices = reportServices;
         this.actionSheetController = actionSheetController;
         this.alertController = alertController;
+        this.userService = userService;
+        this.router = router;
+        this.loadingController = loadingController;
         this.reports = null;
+        this.dataUser = [];
         this.getReports(0);
+        this.dataUser = this.userService.auth();
+        console.log(this.userService.auth());
     }
     Tab1Page.prototype.ngOnInit = function () {
         this.getReports(0);
@@ -102,7 +113,6 @@ var Tab1Page = /** @class */ (function () {
     };
     Tab1Page.prototype.getReports = function (reporter_id) {
         var _this = this;
-        //this.reports = this.reportServices.reportsByReporter(reporter_id);
         this.reportServices.reportsByReporter(reporter_id).subscribe(function (reports) {
             console.log(reports);
             _this.reports = reports['reports'];
@@ -110,6 +120,31 @@ var Tab1Page = /** @class */ (function () {
         }, function (error) {
             alert("error: " + error.message);
             alert("error");
+        });
+    };
+    Tab1Page.prototype.logout = function () {
+        this.userService.logout();
+        this.presentLoadingWithOptions();
+        this.router.navigate(['/login']);
+    };
+    Tab1Page.prototype.presentLoadingWithOptions = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var loading;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.loadingController.create({
+                            spinner: 'circles',
+                            duration: 1000,
+                            message: 'Cerrando sesión',
+                            translucent: true,
+                            cssClass: 'custom-class custom-loading'
+                        })];
+                    case 1:
+                        loading = _a.sent();
+                        return [4 /*yield*/, loading.present()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
     };
     Tab1Page.prototype.presentActionSheet = function () {
@@ -192,8 +227,12 @@ var Tab1Page = /** @class */ (function () {
             template: __webpack_require__(/*! ./tab1.page.html */ "./src/app/tab1/tab1.page.html"),
             styles: [__webpack_require__(/*! ./tab1.page.scss */ "./src/app/tab1/tab1.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_reports_reports_service__WEBPACK_IMPORTED_MODULE_2__["ReportsService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ActionSheetController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_reports_reports_service__WEBPACK_IMPORTED_MODULE_2__["ReportsService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ActionSheetController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
+            _services_auth_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"]])
     ], Tab1Page);
     return Tab1Page;
 }());
