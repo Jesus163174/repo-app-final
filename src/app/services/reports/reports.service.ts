@@ -12,7 +12,8 @@ export class ReportsService {
         return this.http.get(this.api_url_reports);
     } 
     public reportsbyUser(reporterID){
-        alert(reporterID)
+        let endpoint = "https://magnacomunicaciones.com.mx/api/report_by_user/"+reporterID;
+        return this.http.get(endpoint);
     }
     public addReports(report){
         let nameReport  = report['nameReport'];

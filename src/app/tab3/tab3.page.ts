@@ -7,13 +7,17 @@ import {UserService} from '../services/auth/user.service';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-    private report:any = [];
+    private reports:any = [];
     constructor(private reportService: ReportsService, private userService:UserService) {
         this.getReportsByReporter();
     }
     private getReportsByReporter(){
         let reporterID = this.userService.auth().id;
-        this.reportService.reportsbyUser(reporterID);
+        this.reportService.reportsbyUser(reporterID).subscribe((result)=>{
+            this.reports = result;
+        },(error=>{
+            alert(error.message);
+        }));
     }
 
 }
