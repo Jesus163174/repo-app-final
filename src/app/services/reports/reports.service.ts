@@ -27,4 +27,7 @@ export class ReportsService {
             }
         });
     }
+    public updateReports(id,nameReport,descripcion){
+
+    }
 }
