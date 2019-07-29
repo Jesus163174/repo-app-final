@@ -446,6 +446,7 @@ var map = {
 	],
 	"../tab3/tab3.module": [
 		"./src/app/tab3/tab3.module.ts",
+		"common",
 		"tab3-tab3-module"
 	],
 	"./auth/user/pages/login/login/login.module": [
@@ -460,6 +461,7 @@ var map = {
 	],
 	"./detallereporte/detallereporte.module": [
 		"./src/app/detallereporte/detallereporte.module.ts",
+		"common",
 		"detallereporte-detallereporte-module"
 	],
 	"./tabs/tabs.module": [
@@ -510,7 +512,7 @@ var routes = [
     { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
     { path: 'login', loadChildren: './auth/user/pages/login/login/login.module#LoginPageModule' },
     { path: 'register', loadChildren: './auth/user/pages/register/register/register.module#RegisterPageModule' },
-    { path: 'detallereporte', loadChildren: './detallereporte/detallereporte.module#DetallereportePageModule' }
+    { path: 'detallereporte/:reportid', loadChildren: './detallereporte/detallereporte.module#DetallereportePageModule' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

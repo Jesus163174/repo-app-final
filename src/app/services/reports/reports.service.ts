@@ -33,4 +33,8 @@ export class ReportsService {
     public updateReports(id,nameReport,descripcion){
 
     }
+    public getReport(reportId){
+        let endpoint = this.api_url_reports+"/"+reportId;
+        return this.http.get(endpoint);
+    }
 }

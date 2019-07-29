@@ -52,7 +52,7 @@ var Tab1PageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header  translucent>\r\n    <ion-toolbar color=\"danger\">\r\n        <ion-title>Noticias Tuxtla</ion-title>\r\n    </ion-toolbar>\r\n</ion-header>\r\n<ion-content fullscreen class=\"background-primary\">\r\n    <ion-card>\r\n        <ion-item>\r\n            <ion-icon name=\"person\" slot=\"start\"></ion-icon>\r\n            <ion-label>{{dataUser.name}}</ion-label>\r\n        </ion-item>\r\n        <ion-card-content>\r\n            <ion-button (click)=\"logout()\" expand=\"full\" color=\"danger\">Salir</ion-button>\r\n        </ion-card-content>\r\n    </ion-card>\r\n    <ion-card *ngFor=\"let report of reports\" (click)=\"presentActionSheet()\">\r\n        <img [src]=\"report.imagen\" />\r\n        <ion-card-header>\r\n            <ion-card-subtitle>{{report.nameReport}}</ion-card-subtitle>\r\n            <ion-card-title>{{report.fecha}}</ion-card-title>\r\n        </ion-card-header>\r\n        <ion-card-content>\r\n            {{report.descripcion}}\r\n        </ion-card-content>\r\n    </ion-card>\r\n</ion-content>\r\n<ion-fab routerLink=\"/tabs/tab2\" vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\r\n    <ion-fab-button color=\"danger\" size=\"small\">\r\n        <ion-icon name=\"add\"></ion-icon>\r\n    </ion-fab-button>\r\n</ion-fab>\r\n"
+module.exports = "<ion-header  translucent>\r\n    <ion-toolbar color=\"danger\">\r\n        <ion-title>Noticias Tuxtla</ion-title>\r\n    </ion-toolbar>\r\n</ion-header>\r\n<ion-content fullscreen class=\"background-primary\">\r\n    <ion-card>\r\n        <ion-item>\r\n            <ion-icon name=\"person\" slot=\"start\"></ion-icon>\r\n            <ion-label>{{dataUser.name}}</ion-label>\r\n        </ion-item>\r\n        <ion-card-content>\r\n            <ion-button (click)=\"logout()\" expand=\"full\" color=\"danger\">Salir</ion-button>\r\n        </ion-card-content>\r\n    </ion-card>\r\n    <ion-card *ngFor=\"let report of reports\" (click)=\"presentActionSheet(report)\">\r\n        <img [src]=\"report.imagen\" />\r\n        <ion-card-header>\r\n            <ion-card-subtitle>{{report.nameReport}}</ion-card-subtitle>\r\n            <ion-card-title>{{report.fecha}}</ion-card-title>\r\n        </ion-card-header>\r\n        <ion-card-content>\r\n            {{report.descripcion}}\r\n        </ion-card-content>\r\n    </ion-card>\r\n</ion-content>\r\n<ion-fab routerLink=\"/tabs/tab2\" vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\r\n    <ion-fab-button color=\"danger\" size=\"small\">\r\n        <ion-icon name=\"add\"></ion-icon>\r\n    </ion-fab-button>\r\n</ion-fab>\r\n"
 
 /***/ }),
 
@@ -104,15 +104,12 @@ var Tab1Page = /** @class */ (function () {
         this.getReports(0);
         this.dataUser = this.userService.auth();
     }
-    Tab1Page.prototype.ngOnInit = function () {
-        this.getReports(0);
-    };
     Tab1Page.prototype.ionViewWillEnter = function () {
         this.getReports(0);
     };
     Tab1Page.prototype.getReports = function (reporter_id) {
         var _this = this;
-        this.reportServices.reportsByReporter(reporter_id).subscribe(function (reports) {
+        this.reportServices.getAllReports(reporter_id).subscribe(function (reports) {
             console.log(reports);
             _this.reports = reports['reports'];
             console.log(_this.reports);
@@ -145,7 +142,7 @@ var Tab1Page = /** @class */ (function () {
             });
         });
     };
-    Tab1Page.prototype.presentActionSheet = function () {
+    Tab1Page.prototype.presentActionSheet = function (report) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var actionSheet;
             var _this = this;
@@ -166,7 +163,15 @@ var Tab1Page = /** @class */ (function () {
                                     icon: 'create',
                                     handler: function () {
                                         console.log('Favorite clicked');
+                                        _this.presentAlertPrompt(report);
                                     }
+                                }, {
+                                    text: 'Detalle',
+                                    icon: 'eye',
+                                    handler: function () {
+                                        console.log('Favorite clicked');
+                                        _this.router.navigate(["/detallereporte/" + report.id]);
+                                    },
                                 }, {
                                     text: 'Cancelar',
                                     icon: 'close',
@@ -205,6 +210,55 @@ var Tab1Page = /** @class */ (function () {
                                     text: 'Confirmar',
                                     handler: function () {
                                         console.log('Confirm Okay');
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Tab1Page.prototype.presentAlertPrompt = function (report) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: 'Editar Noticia',
+                            inputs: [
+                                {
+                                    name: 'name',
+                                    type: 'text',
+                                    value: report.nameReport,
+                                    placeholder: 'Nombre'
+                                },
+                                {
+                                    name: 'desc',
+                                    type: 'text',
+                                    value: report.descripcion,
+                                    placeholder: 'Descripción'
+                                },
+                            ],
+                            buttons: [
+                                {
+                                    text: 'Cancelar',
+                                    role: 'cancel',
+                                    cssClass: 'secondary',
+                                    handler: function () {
+                                        console.log('Cancelar');
+                                    }
+                                }, {
+                                    text: 'Guardar',
+                                    handler: function (data) {
+                                        console.log('Confirm Ok');
+                                        console.log(data.name);
+                                        console.log(data.desc);
                                     }
                                 }
                             ]

@@ -58,7 +58,7 @@ var DetallereportePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"danger\">\r\n    <ion-title>Detalle Noticia</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content fullscreen>\r\n  <ion-card >\r\n      <img [src]=\"report.imagen\" />\r\n      <ion-card-header>\r\n          <ion-card-subtitle>Nombre</ion-card-subtitle>\r\n          <ion-card-title>Fecha</ion-card-title>\r\n      </ion-card-header>\r\n      <ion-card-content>\r\n          Descripción\r\n      </ion-card-content>\r\n  </ion-card>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"danger\">\r\n    <ion-title>Detalle Noticia</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content fullscreen>\r\n  <ion-card >\r\n      <img  [src]=\"report.imagen\"/>\r\n      <ion-card-header>\r\n          <ion-card-subtitle>{{report.fecha | date}}</ion-card-subtitle>\r\n          <ion-card-subtitle>Reportado por: {{reporter.name}}</ion-card-subtitle>\r\n          <ion-card-title>{{report.nameReport}}</ion-card-title>\r\n      </ion-card-header>\r\n      <ion-card-content>\r\n          {{report.descripcion}} <br>\r\n      </ion-card-content>\r\n  </ion-card>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -85,12 +85,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetallereportePage", function() { return DetallereportePage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_reports_reports_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/reports/reports.service */ "./src/app/services/reports/reports.service.ts");
+
+
 
 
 var DetallereportePage = /** @class */ (function () {
-    function DetallereportePage() {
+    function DetallereportePage(activatedRoute, reportsService) {
+        this.activatedRoute = activatedRoute;
+        this.reportsService = reportsService;
+        this.reportId = null;
+        this.report = [];
+        this.reporter = [];
+        this.reportId = this.activatedRoute.snapshot.paramMap.get('reportid');
+        this.getReport(this.reportId);
     }
     DetallereportePage.prototype.ngOnInit = function () {
+    };
+    DetallereportePage.prototype.getReport = function (reportId) {
+        var _this = this;
+        this.reportsService.getReport(reportId).subscribe(function (result) {
+            _this.report = result['report'];
+            _this.reporter = result['user'];
+        }, function (error) {
+            console.log(error.message);
+        });
     };
     DetallereportePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -98,7 +118,7 @@ var DetallereportePage = /** @class */ (function () {
             template: __webpack_require__(/*! ./detallereporte.page.html */ "./src/app/detallereporte/detallereporte.page.html"),
             styles: [__webpack_require__(/*! ./detallereporte.page.scss */ "./src/app/detallereporte/detallereporte.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _services_reports_reports_service__WEBPACK_IMPORTED_MODULE_3__["ReportsService"]])
     ], DetallereportePage);
     return DetallereportePage;
 }());
