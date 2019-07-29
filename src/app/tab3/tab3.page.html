@@ -1,7 +1,18 @@
 <ion-header  translucent>
   <ion-toolbar color="danger">
-      <ion-title>Detalle de la noticia</ion-title>
+      <ion-title>Tus reportes</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+    <ion-card *ngFor="let report of reports" (click)="presentActionSheet(report)">
+        <img [src]="report.imagen" />
+        <ion-card-header>
+            <ion-card-subtitle>{{report.nameReport}}</ion-card-subtitle>
+            <ion-card-title>{{report.fecha}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            {{report.descripcion}}
+        </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -468,8 +468,11 @@ var ReportsService = /** @class */ (function () {
         this.reports = [];
         this.api_url_reports = "https://magnacomunicaciones.com.mx/api/reports";
     }
-    ReportsService.prototype.reportsByReporter = function (reporter_id) {
+    ReportsService.prototype.getAllReports = function (reporter_id) {
         return this.http.get(this.api_url_reports);
+    };
+    ReportsService.prototype.reportsbyUser = function (reporterID) {
+        alert(reporterID);
     };
     ReportsService.prototype.addReports = function (report) {
         var nameReport = report['nameReport'];
@@ -486,6 +489,14 @@ var ReportsService = /** @class */ (function () {
                 'Content-Type': 'application/json'
             }
         });
+    };
+    ReportsService.prototype.updateReports = function (id, nameReport, descripcion) {
+        var endpoint = this.api_url_reports + "/" + id;
+        return this.http.put(endpoint, { nameReport: nameReport, descripcion: descripcion });
+    };
+    ReportsService.prototype.getReport = function (reportId) {
+        var endpoint = this.api_url_reports + "/" + reportId;
+        return this.http.get(endpoint);
     };
     ReportsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
