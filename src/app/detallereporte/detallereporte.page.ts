@@ -10,6 +10,7 @@ export class DetallereportePage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
