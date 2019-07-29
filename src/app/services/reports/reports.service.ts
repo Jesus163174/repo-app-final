@@ -8,9 +8,12 @@ export class ReportsService {
     private api_url_reports:string = "https://magnacomunicaciones.com.mx/api/reports";
     constructor(private http: HttpClient) { }
 
-    public reportsByReporter(reporter_id){
+    public getAllReports(reporter_id){
         return this.http.get(this.api_url_reports);
     } 
+    public reportsbyUser(reporterID){
+        alert(reporterID)
+    }
     public addReports(report){
         let nameReport  = report['nameReport'];
         let descripcion = report['descripcion'];

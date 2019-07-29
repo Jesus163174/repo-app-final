@@ -58,7 +58,7 @@ var LoginPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"danger\">\r\n    \r\n    <ion-title>Noticias Tuxtla - Iniciar Sesión</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content padding>\r\n  <form  (ngSubmit)=\"login()\" method=\"post\">\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Email</ion-label>\r\n      <ion-input ngModel type=\"email\" [(ngModel)]=\"user.email\" name=\"email\"></ion-input>\r\n    </ion-item>\r\n  \r\n    <ion-item>\r\n      <ion-label position=\"floating\">Contraseña</ion-label>\r\n      <ion-input ngModel type=\"password\" [(ngModel)]=\"user.password\" name=\"password\"></ion-input>\r\n    </ion-item>\r\n\r\n  \r\n    <ion-button type=\"submit\" expand=\"full\" color=\"danger\">Iniciar Sesión</ion-button>\r\n  </form>\r\n  <p text-center>¿No tienes una cuenta?</p>\r\n  <ion-button routerLink=\"/register\" expand=\"full\" color=\"primary\" >Registrarse</ion-button>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n    <ion-toolbar color=\"danger\">\r\n        <ion-title>Noticias Tuxtla - Iniciar Sesión</ion-title>\r\n    </ion-toolbar>\r\n</ion-header>\r\n<ion-content padding>\r\n    <form (ngSubmit)=\"login()\" method=\"post\">\r\n        <ion-item>\r\n            <ion-label position=\"floating\">Email</ion-label>\r\n            <ion-input ngModel type=\"email\" [(ngModel)]=\"user.email\" name=\"email\"></ion-input>\r\n        </ion-item>\r\n        <ion-item>\r\n            <ion-label position=\"floating\">Contraseña</ion-label>\r\n            <ion-input ngModel type=\"password\" [(ngModel)]=\"user.password\" name=\"password\"></ion-input>\r\n        </ion-item>\r\n        <ion-button type=\"submit\" expand=\"full\" color=\"danger\">Iniciar Sesión</ion-button>\r\n    </form>\r\n    <p text-center>¿No tienes una cuenta?</p>\r\n    <ion-button routerLink=\"/register\" expand=\"full\" color=\"primary\" >Registrarse</ion-button>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -99,6 +99,7 @@ var LoginPage = /** @class */ (function () {
         this.router = router;
         this.loadingController = loadingController;
         this.user = {};
+        console.log(this.userService.auth());
         if (this.userService.isActive() == 'true')
             this.router.navigate(['tabs/tab1']);
     }

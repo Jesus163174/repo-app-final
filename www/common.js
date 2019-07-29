@@ -411,7 +411,7 @@ var UserService = /** @class */ (function () {
         return this.http.post(endpoint, {
             email: user['email'],
             password: user['password'],
-            rol: user['rol'],
+            rol: 'reportero',
             bussine_id: 1,
             celular: "0000000",
             name: user['name'] + ' ' + user['apellido']

@@ -15,8 +15,8 @@ export class RegisterPage implements OnInit {
         if(
             this.user['name'] === undefined &&
             this.user['apellido'] === undefined &&
-            this.user['password'] === undefined &&
-            this.user['rol'] === undefined
+            this.user['password'] === undefined 
+            //this.user['rol'] === undefined
         )
             return false;
     }
@@ -27,10 +27,9 @@ export class RegisterPage implements OnInit {
             return;
         }
         this.userService.register(this.user).subscribe((result)=>{
-           this.presentLoadingWithOptions();
-           this.userService.saveUserData(result);
-           console.log("registro: "+JSON.stringify(result));
-           this.router.navigate(['tabs/tab1']);
+            this.presentLoadingWithOptions();
+            this.userService.saveUserData(result);
+            this.router.navigate(['tabs/tab1']);
         },(error)=>{
            alert("Error al registrarse");
         });

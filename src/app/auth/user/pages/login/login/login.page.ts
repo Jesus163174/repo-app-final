@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
         private router: Router,
         public loadingController: LoadingController
     ){
+        console.log(this.userService.auth())
         if(this.userService.isActive() == 'true')
             this.router.navigate(['tabs/tab1']);
     }

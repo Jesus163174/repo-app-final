@@ -103,8 +103,9 @@ var RegisterPage = /** @class */ (function () {
     RegisterPage.prototype.validate = function () {
         if (this.user['name'] === undefined &&
             this.user['apellido'] === undefined &&
-            this.user['password'] === undefined &&
-            this.user['rol'] === undefined)
+            this.user['password'] === undefined
+        //this.user['rol'] === undefined
+        )
             return false;
     };
     RegisterPage.prototype.register = function () {
@@ -116,7 +117,6 @@ var RegisterPage = /** @class */ (function () {
         this.userService.register(this.user).subscribe(function (result) {
             _this.presentLoadingWithOptions();
             _this.userService.saveUserData(result);
-            console.log("registro: " + JSON.stringify(result));
             _this.router.navigate(['tabs/tab1']);
         }, function (error) {
             alert("Error al registrarse");

@@ -24,22 +24,17 @@ export class Tab1Page {
     ){
         this.getReports(0);
         this.dataUser = this.userService.auth();
-        console.log(this.userService.auth())
-    }
-    ngOnInit(){
-        this.getReports(0);
     }
     ionViewWillEnter() {
         this.getReports(0);
     }
     getReports(reporter_id){
-        this.reportServices.reportsByReporter(reporter_id).subscribe((reports)=>{
+        this.reportServices.getAllReports(reporter_id).subscribe((reports)=>{
             console.log(reports);
             this.reports = reports['reports'];
             console.log(this.reports);
         },(error)=>{
             alert("error: "+error.message)
-            alert("error");
         });
     }
     logout(){

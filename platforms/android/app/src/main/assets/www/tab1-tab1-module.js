@@ -52,7 +52,7 @@ var Tab1PageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header  translucent>\r\n    <ion-toolbar color=\"danger\">\r\n        <ion-title>Noticias Tuxtla</ion-title>\r\n    </ion-toolbar>\r\n</ion-header>\r\n<ion-content fullscreen class=\"background-primary\">\r\n    <ion-card>\r\n        <ion-item>\r\n            <ion-icon name=\"person\" slot=\"start\"></ion-icon>\r\n            <ion-label>{{dataUser.name}}</ion-label>\r\n            <ion-button *ngIf=\"dataUser.rol == 'administrador' || dataUser.rol == 'reportero' \" fill=\"outline\" color=\"danger\" slot=\"end\">\r\n                <ion-icon name=\"paper\"></ion-icon> 10\r\n            </ion-button>\r\n        </ion-item>\r\n        <ion-card-content>\r\n            <ion-button (click)=\"logout()\" expand=\"full\" color=\"danger\">Salir</ion-button>\r\n        </ion-card-content>\r\n    </ion-card>\r\n    <ion-card *ngFor=\"let report of reports\" (click)=\"presentActionSheet()\">\r\n        <img [src]=\"report.imagen\" />\r\n        <ion-card-header>\r\n            <ion-card-subtitle>{{report.nameReport}}</ion-card-subtitle>\r\n            <ion-card-title>{{report.fecha}}</ion-card-title>\r\n        </ion-card-header>\r\n        <ion-card-content>\r\n            {{report.descripcion}}\r\n        </ion-card-content>\r\n    </ion-card>\r\n</ion-content>\r\n<ion-fab routerLink=\"/tabs/tab2\" vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\r\n    <ion-fab-button color=\"danger\" size=\"small\">\r\n        <ion-icon name=\"add\"></ion-icon>\r\n    </ion-fab-button>\r\n</ion-fab>\r\n"
+module.exports = "<ion-header  translucent>\r\n    <ion-toolbar color=\"danger\">\r\n        <ion-title>Noticias Tuxtla</ion-title>\r\n    </ion-toolbar>\r\n</ion-header>\r\n<ion-content fullscreen class=\"background-primary\">\r\n    <ion-card>\r\n        <ion-item>\r\n            <ion-icon name=\"person\" slot=\"start\"></ion-icon>\r\n            <ion-label>{{dataUser.name}}</ion-label>\r\n        </ion-item>\r\n        <ion-card-content>\r\n            <ion-button (click)=\"logout()\" expand=\"full\" color=\"danger\">Salir</ion-button>\r\n        </ion-card-content>\r\n    </ion-card>\r\n    <ion-card *ngFor=\"let report of reports\" (click)=\"presentActionSheet()\">\r\n        <img [src]=\"report.imagen\" />\r\n        <ion-card-header>\r\n            <ion-card-subtitle>{{report.nameReport}}</ion-card-subtitle>\r\n            <ion-card-title>{{report.fecha}}</ion-card-title>\r\n        </ion-card-header>\r\n        <ion-card-content>\r\n            {{report.descripcion}}\r\n        </ion-card-content>\r\n    </ion-card>\r\n</ion-content>\r\n<ion-fab routerLink=\"/tabs/tab2\" vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\r\n    <ion-fab-button color=\"danger\" size=\"small\">\r\n        <ion-icon name=\"add\"></ion-icon>\r\n    </ion-fab-button>\r\n</ion-fab>\r\n"
 
 /***/ }),
 
@@ -103,7 +103,6 @@ var Tab1Page = /** @class */ (function () {
         this.dataUser = [];
         this.getReports(0);
         this.dataUser = this.userService.auth();
-        console.log(this.userService.auth());
     }
     Tab1Page.prototype.ngOnInit = function () {
         this.getReports(0);
@@ -119,7 +118,6 @@ var Tab1Page = /** @class */ (function () {
             console.log(_this.reports);
         }, function (error) {
             alert("error: " + error.message);
-            alert("error");
         });
     };
     Tab1Page.prototype.logout = function () {

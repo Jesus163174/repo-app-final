@@ -83,6 +83,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var Tab3Page = /** @class */ (function () {
     function Tab3Page() {
+        localStorage.removeItem('auth');
+        localStorage.removeItem('active');
     }
     Tab3Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
