@@ -52,7 +52,7 @@ var Tab3PageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header  translucent>\n  <ion-toolbar color=\"danger\">\n      <ion-title>Detalle de la noticia</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content></ion-content>\n"
+module.exports = "<ion-header  translucent>\n  <ion-toolbar color=\"danger\">\n      <ion-title>Tus reportes</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <ion-card *ngFor=\"let report of reports\">\n        <img [src]=\"report.imagen\" />\n        <ion-card-header>\n            <ion-card-subtitle>{{report.nameReport}}</ion-card-subtitle>\n            <ion-card-title>{{report.fecha}}</ion-card-title>\n        </ion-card-header>\n        <ion-card-content>\n            {{report.descripcion}}\n        </ion-card-content>\n    </ion-card>\n</ion-content>\n"
 
 /***/ }),
 
@@ -89,12 +89,17 @@ var Tab3Page = /** @class */ (function () {
     function Tab3Page(reportService, userService) {
         this.reportService = reportService;
         this.userService = userService;
-        this.report = [];
+        this.reports = [];
         this.getReportsByReporter();
     }
     Tab3Page.prototype.getReportsByReporter = function () {
+        var _this = this;
         var reporterID = this.userService.auth().id;
-        this.reportService.reportsbyUser(reporterID);
+        this.reportService.reportsbyUser(reporterID).subscribe(function (result) {
+            _this.reports = result;
+        }, (function (error) {
+            alert(error.message);
+        }));
     };
     Tab3Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

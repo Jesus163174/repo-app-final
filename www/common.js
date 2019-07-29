@@ -472,7 +472,8 @@ var ReportsService = /** @class */ (function () {
         return this.http.get(this.api_url_reports);
     };
     ReportsService.prototype.reportsbyUser = function (reporterID) {
-        alert(reporterID);
+        var endpoint = "https://magnacomunicaciones.com.mx/api/report_by_user/" + reporterID;
+        return this.http.get(endpoint);
     };
     ReportsService.prototype.addReports = function (report) {
         var nameReport = report['nameReport'];

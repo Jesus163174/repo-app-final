@@ -55,29 +55,21 @@ export class Tab1Page {
     async presentActionSheet(report) {
         const actionSheet = await this.actionSheetController.create({
             header: 'Noticias',
-            buttons: [{
-                text: 'Eliminar',
-                role: 'destructive',
-                icon: 'trash',
-                handler: () => {
-                    console.log('Delete clicked');
-                    this.presentAlertConfirm();
-                }
-            }, {
+            buttons: [  {
                 text: 'Editar',
                 icon: 'create',
                 handler: () => {
                     console.log('Favorite clicked');
                     this.presentAlertPrompt(report);
                 }
-            }, {
+            }, /*{
                 text: 'Detalle',
                 icon: 'eye',
                 handler: () => {
                     console.log('Favorite clicked');
                     this.router.navigate([`/detallereporte/${report.id}`]);
-                },
-            }, {
+                },*/
+             {
                 text: 'Cancelar',
                 icon: 'close',
                 role: 'cancel',
@@ -155,7 +147,7 @@ export class Tab1Page {
     }
     public updateReportSuccessful(report){
         alert("Reporte actualizado correctamente");
-        this.router.navigate([`/detallereporte/${report}`]);
+        this.router.navigate(['/tabs/tab1']);
     }
 
 

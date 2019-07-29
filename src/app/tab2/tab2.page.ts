@@ -9,10 +9,20 @@ import { NavController } from '@ionic/angular';
 })
 export class Tab2Page implements OnInit{
 
+    image: string = null;
     public reportes = {};
-    constructor( private navCtrl: NavController,private reportService:ReportsService,private router: Router) { 
+    constructor( 
+        
+        private navCtrl: NavController,
+        private reportService:ReportsService,
+        private router: Router
+    ) { 
     }
     
+    public takePicture(){
+        
+    }
+
     addReport(){
         this.reportService.addReports(this.reportes).subscribe((data)=>{
             this.navCtrl.navigateRoot(['/tabs/tab1']);
